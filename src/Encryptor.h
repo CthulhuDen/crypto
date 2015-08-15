@@ -29,6 +29,7 @@ typedef unsigned char byte;
 class Encryptor {
 public:
 	Encryptor(const char *pkFilename);
+	Encryptor(const Encryptor&);
 	virtual ~Encryptor();
 
 	void setSymmetricCipher(std::unique_ptr<CryptoPP::SymmetricCipher> symmetricCipher

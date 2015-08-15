@@ -26,6 +26,7 @@ typedef unsigned char byte;
 class Decryptor {
 public:
 	Decryptor(const char *pkFilename);
+	Decryptor(const Decryptor&);
 	virtual ~Decryptor();
 
 	void setSymmetricCipher(std::unique_ptr<CryptoPP::SymmetricCipher> symmetricCipher
