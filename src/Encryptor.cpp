@@ -131,7 +131,6 @@ vector<byte> Encryptor::initialize()
 		channelSwitch->AddRoute("ATAG", *m_aadSink, CryptoPP::DEFAULT_CHANNEL);
 	} else {
 		m_streamFilter = make_unique<StreamTransformationFilter>(*m_symmetricCypher, new Redirector(*m_outputFilter));
-
 	}
 
 	// initialize symmetric cipher
@@ -179,6 +178,7 @@ vector<byte> Encryptor::update(vector<byte> input)
 vector<byte> Encryptor::finalize()
 {
 	if (m_isFinalized) throw logic_error("Already finalized");
+	if (!m_isInitialized) throw logic_error("Initialization not completed");
 
 	string res;
 	StringSink sink(res);
